@@ -37,7 +37,8 @@ import { NoContentComponent } from './no-content';
 import {
   DropdownModule,
   PaginatorModule,
-  MultiSelectModule
+  MultiSelectModule,
+	TabViewModule
 } from 'primeng/primeng';
 /* for pagination */
 import { PaginationComponent } from './pagination/pagination.component';
@@ -75,6 +76,11 @@ import { PropertyEditComponent, PropertyUnitDetailComponent } from './properties
 import { PropertyService } from './properties/property.service';
 import { TenantDashboardService } from './tenantDashboard/tenant-dashboard.service';
 
+import { SiteContentComponent } from './site-content/site-content/site-content.component';
+import { SiteContentListComponent } from './site-content/site-content-list/site-content-list.component';
+import { SiteContentService } from './site-content/shared/site-content.service';
+
+
 import { ConfirmService } from './shared/service/confirm.service';
 import { UploadService } from './shared/service/upload.service';
 
@@ -100,7 +106,7 @@ class MyRequestOptions extends BaseRequestOptions {
     console.log('Auth Token is');
     console.log(auth);
     //  this.headers.append('Authorization', 'Bearer ' + auth.access_token);
-    this.headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3ZWJtYXN0ZXIiLCJqdGkiOiI4N2Q4MTU4ZS1hZjFkLTQ2ZWYtYWRkYy1kYTFlMmE2ODk5ZjMiLCJpYXQiOjE0ODU5NDM5MTAsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJ3ZWJtYXN0ZXIiLCJVc2VySWQiOiIxMjc0MjUiLCJFbWFpbCI6ImhlbGxvQGlvbmVtaWNyby5jb20iLCJuYmYiOjE0ODU5NDM5MTAsImV4cCI6MTQ4NTk5NTg1OSwiaXNzIjoiaHR0cDovL2FiYy5jb20iLCJhdWQiOiJNb2xlY3VsYXJBcHAifQ.mNunbo_ErAQG2OO1G8NGEUu6RKez3UvMtvZIZ8HW6YE' );
+    this.headers.append('Authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3ZWJtYXN0ZXIiLCJqdGkiOiI4OThiNjQxZC1lOGI3LTQ2NjUtOGE1MS1iZTkyOGNmYjJlOTYiLCJpYXQiOjE0ODYxMTYxNTMsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJ3ZWJtYXN0ZXIiLCJVc2VySWQiOiIxMjc0MjUiLCJFbWFpbCI6ImhlbGxvQGlvbmVtaWNyby5jb20iLCJuYmYiOjE0ODYxMTYxNTIsImV4cCI6MTQ4NjE3MjA4NCwiaXNzIjoiaHR0cDovL2FiYy5jb20iLCJhdWQiOiJNb2xlY3VsYXJBcHAifQ.NwxYSmQVCxp_a7mWqb3s-4T6o7mRdPqVskXYdOgnIMs' );
 
   }
 }
@@ -140,7 +146,10 @@ type StoreType = {
     LeaseDetailComponent,
     PropertyUnitDetailComponent,
     TenantDashboardComponent,
-    IconPickerComponent
+    IconPickerComponent,
+
+		SiteContentComponent,
+		SiteContentListComponent
 
   ],
   imports: [ // import Angular's modules
@@ -155,6 +164,7 @@ type StoreType = {
     Ng2FilterPipeModule,
     PaginatorModule,
     MultiSelectModule,
+		TabViewModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
 
@@ -169,6 +179,7 @@ type StoreType = {
     UploadService,
     UsersService,
     LeaseService,
+		SiteContentService,
     TenantDashboardService,
     { provide: RequestOptions, useClass: MyRequestOptions }
 

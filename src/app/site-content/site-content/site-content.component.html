@@ -1,0 +1,106 @@
+<!--<div class="row"  style="margin-top:5%">
+  <div class="col-lg-7"></div>
+  <div class="col-lg-5">
+    <div class="col-md-4">Publish</div>
+    <div class="col-md-2">
+      <label class="toggle col-sm-8">
+    <input type="checkbox" (click)="Existing()">
+    <span class="handle"></span>
+  </label>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+</div>-->
+<div class="row" style="margin-top:5%">
+  <div class="col-lg-7"></div>
+  <div class="col-lg-5">
+    <div class="col-md-4">Publish</div>
+    <input type="checkbox" [(ngModel)]="sitecontent.Published" />
+    <div class="col-md-6"></div>
+  </div>
+</div>
+<p-tabView>
+  <p-tabPanel header="Content Description">
+    <div class="row">
+      <div class="col-lg-6">
+        <div>
+          <div class="col-lg-4" for="topic_title">Page Name</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" class="form-control" placeholder="Enter Page Title" [(ngModel)]="sitecontent.PageName">
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Page Title:</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" class="form-control" placeholder="Enter Page Title" [(ngModel)]="sitecontent.PageTitle">
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Page url:</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" class="form-control" placeholder="Enter Page url" [(ngModel)]="sitecontent.PageURL">
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Meta Keywords</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" class="form-control" placeholder="Enter Meta Keywords" [(ngModel)]="sitecontent.MetaKeyword">
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Meta Description</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" class="form-control" placeholder="Enter Meta Description" [(ngModel)]="sitecontent.MetaDescription">
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Other Meta Tags:</div>
+          <div class="col-lg-6 input-group">
+            <textarea rows="4" cols="50" class="form-control" placeholder="Enter Other Meta Tags" [(ngModel)]="sitecontent.OtherMetaTags"></textarea>
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Published By</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" rows="4" cols="50" class="form-control" placeholder="Enter Published" [(ngModel)]="sitecontent.PublishedBy">
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Last Modified</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" rows="4" cols="50" class="form-control" [(ngModel)]="sitecontent.LastModifiedDate" readonly>
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>
+        <!--<div style="margin-top:5%">
+          <div class="col-lg-4" for="topic_title">Modified By</div>
+          <div class="col-lg-6 input-group">
+            <input type="text" rows="4" cols="50" class="form-control" [(ngModel)]="sitecontent.ModifiedBy" readonly>
+          </div>
+          <div class="col-lg-2" for="topic_title"></div>
+        </div>-->
+      </div>
+      <div class="col-lg-6">
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Html Editor">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <label>html text field</label>
+        <ckeditor [(ngModel)]="sitecontent.PageContent" debounce="500">
+        </ckeditor>
+        <div class="help-block animated fadeInDown">
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>
+<button (click)="SaveSiteContents()">Save Contents</button>
