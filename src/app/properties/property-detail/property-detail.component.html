@@ -1,0 +1,126 @@
+<div class="unit-detail"> Hello UnitDetailComponent! </div>
+
+<div class="content bg-gray-lighter">
+	<div class="row items-push">
+		<div class="col-lg-7">
+			<h1 class="page-heading">
+				{{property.Name}} [{{property.Number}}]<small>Property Details</small>
+			</h1>
+		</div>
+		<div class="col-lg-5 text-right hidden-xs">
+			<ol class="breadcrumb push-10-t">
+				<li><a href="#/dashboard">DASHBOARD</a></li>
+				<li><a href="#/properties">PROPERTIES</a></li>
+				<li>{{property.Name }}</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="pull-right">
+				<a href="#/dashboard">Frontend</a>
+				<a href="#/properties/{{Id}}/edit">Edit</a>
+			</div>
+			<br style="clear:both" /> &nbsp;
+</div>
+</div>
+<div class="row">
+	<div class="col-md-3 col-xs-12">
+		<div class="block">
+			<div class="block-header">
+				<ul class="block-options">
+					<li>
+						<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+					</li>
+					<li>
+						<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+					</li>
+				</ul>
+				<h3 class="block-title">Description</h3>
+			</div>
+			<div class="block-content">
+				<p style="color:gray; font-style: italic" *ngIf="property.Description==null || property.Description.length
+<=0 ">
+						No description supplied. Click <a href="#/properties/{{Id}}/edit ">Here</a> to edit.
+					</p>
+					<p *ngIf="property.Description!=null && property.Description.length>0"> {{property.Description}}
+	</p>
+	</div>
+	</div>
+	<div class="block">
+		<div class="block-header">
+			<ul class="block-options">
+				<li>
+					<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+				</li>
+				<li>
+					<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+				</li>
+			</ul>
+			<h3 class="block-title">Property Attributes</h3>
+		</div>
+		<div class="block-content">
+			<p>
+				<label>Property Type</label><br />
+				<i class="fa fa-building" *ngIf="property.Type=='PropMan::ResidentialProperty'"></i>Residential
+				<i class="fa fa-bank" *ngIf="property.Type=='PropMan::CommercialProperty'"></i>Commercial
+				<span class="text-danger" *ngIf="property.Type==null || property.Type.length<=0">Unknown</span>
+			</p>
+			<p>
+				<label>Address</label><br />
+				<span *ngIf="property.Address1 !=''">{{property.Address1}}</span>
+				<span style="color:gray; font-style: italic" *ngIf="property.Address1 ==''">Unknown</span>
+<br />
+<span *ngIf="property.Address2 !=''">{{property.Address2}}</span>
+
+<span *ngIf="property.City !=''">{{property.City}}</span>
+<span style="color:gray; font-style: italic" *ngIf="property.City ==''">Unknown</span>
+
+<span *ngIf="property.State !=''">{{property.State}}</span>
+<span style="color:gray; font-style: italic" *ngIf="property.State ==''">Unknown</span>
+
+<span *ngIf="property.Zip !=''">{{property.Zip}}</span>
+<span style="color:gray; font-style: italic" *ngIf="property.Zip ==''">Unknown</span>
+<br />
+</p>
+
+<p>
+	<label>Amenities</label><br />
+	<span style="color:gray; font-style: italic" *ngIf="property.EntityAmenities==null"> No Amenities Listed
+</span>
+</p>
+<ul *ngIf="property.EntityAmenities!=null && property.EntityAmenities.length>0">
+	<p>
+		<li *ngFor="let entity_amenity of property.EntityAmenities">
+			<i class="fa {{entity_amenity.Amenity.Icon}}"></i> {{entity_amenity.Amenity.Name}}
+		</li>
+	</p>
+</ul>
+
+<p>
+	<label>Published</label><br />
+	<span class="text-warning" *ngIf="property.Published==null || property.Published==''">
+							Unpublished
+						</span>
+	<span class="text-success" *ngIf="property.Published !=null && property.Published!=''">
+							{{property.Published}}
+						</span>
+</p>
+</div>
+</div>
+</div>
+<div class="col-md-9 col-xs-12">
+	<property-unit-detail *ngIf='Id' [propertyId]='Id'></property-unit-detail>
+	<!--Unit need to place here after change in unit-->
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		$(".batch-publish-button").on("click", function (evt) {
+			$("#property_BatchPublishingStyle").val($(this).attr("data-value"));
+		});
+	});
+</script>

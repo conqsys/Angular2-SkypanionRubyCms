@@ -1,0 +1,27 @@
+<div class="content bg-gray-lighter">
+  <div class="row items-push">
+    <div class="col-lg-7">
+        <h1 class="page-heading" *ngIf="isEdit">
+          Edit {{entity.Name}} <small>Change this amenity's settings!</small>
+        </h1>
+        <h1 class="page-heading" *ngIf="!isEdit">
+          Amenities <small>Create a new amenity.</small>
+        </h1>
+    </div>
+    <div class="col-lg-5 text-right hidden-xs">
+      <ol class="breadcrumb push-10-t">
+        <li>Home</li>
+        <li *ngIf="isEdit">Amentities</li>
+        <li *ngIf="isEdit">
+          <a [routerLink]="['./']" routerLinkActive="active" class="link-effect">Edit</a>
+        </li>
+        <li *ngIf="!isEdit">
+          <a [routerLink]="['./']" routerLinkActive="active" class="link-effect">PM PROPERTIES</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <!-- rander edit and add form -->
+</div> <!-- .container-fluid -->

@@ -1,0 +1,305 @@
+<div class="content bg-gray-lighter">
+	<div class="row items-push">
+		<div class="col-lg-7">
+			<h1 class="page-heading">
+				Edit PM Unit <small> {{unit.PropertyNumber}}-{{unit.Number}}</small>
+			</h1>
+		</div>
+		<div class="col-lg-5 text-right hidden-xs">
+			<ol class="breadcrumb push-10-t">
+				<li><a href="#/dashboard">DASHBOARD</a></li>
+				<li><a href="#/units">UNITS</a></li>
+				<li>{{unit.PropertyNumber}}-{{unit.Number}}</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="pull-right">
+				<a href="#/units/{{unit.id}}/edit" class="btn btn-primary">Edit</a>
+			</div>
+			<br style="clear:both" /> &nbsp;
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 col-xs-12">
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Unit Settings</h3>
+				</div>
+				<div class="block-content">
+					<p>
+						<label>Published</label><br />
+
+						<span class="text-warning" *ngIf="unit.Published==null">Unpublished</span>
+						<span class="text-success" *ngIf="unit.Published!=null">{{unit.Published}}</span>
+
+					</p>
+					<p>
+						<label>Tile Image</label><br />
+						<a href="http://192.168.1.207:5000/Images/{{unit.Tile}}" target="__blank" *ngIf="unit.Tile!=null && unit.Tile!=''">
+							<i class="fa fa-search"></i>View 
+						</a>
+						<span class="text-warning" *ngIf="unit.Tile==null || unit.Tile==''">None</span>
+					</p>
+					<p>
+						<label>Banner Image</label><br />
+						<a href="http://192.168.1.207:5000/Images/{{unit.Banner}}" target="__blank" *ngIf="unit.Banner!=null && unit.Banner!=''">
+							<i class="fa fa-search"></i>View 
+						</a>
+						<span class="text-warning" *ngIf="unit.Banner==null || unit.Banner==''">None</span>
+					</p>
+					<br /> &nbsp;
+				</div>
+			</div>
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Unit Amenities</h3>
+				</div>
+				<div class="block-content">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Amenity</th>
+								<th>Available</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Dishwasher</td>
+								<td>
+									<span style="font-style:italic; color: gray" *ngIf="unit.Dishwasher==null">Unknown</span>
+									<span class="text-success" *ngIf="unit.Dishwasher==true">Yes</span>
+									<span class="text-danger" *ngIf="unit.Dishwasher==false">No</span>
+								</td>
+							</tr>
+							<tr>
+								<td>Air Conditioning</td>
+								<td>
+
+									<span style="font-style:italic; color: gray" *ngIf="unit.AirConditioned==null">Unknown</span>
+									<span class="text-success" *ngIf="unit.AirConditioned==true">Yes</span>
+									<span class="text-danger" *ngIf="unit.AirConditioned==false">No</span>
+								</td>
+							</tr>
+							<tr>
+								<td>Furnished</td>
+								<td>
+									<span style="font-style:italic; color: gray" *ngIf="unit.Furnished==null">Unknown</span>
+									<span class="text-success" *ngIf="unit.Furnished==true">Yes</span>
+									<span class="text-danger" *ngIf="unit.Furnished==false">No</span>
+								</td>
+							</tr>
+							<tr>
+								<td>Flooring</td>
+								<td>
+									<span style="font-style:italic; color: gray" *ngIf="unit.FlooringInfo==null">Unknown</span>
+									<span *ngIf="!unit.FlooringInfo">{{unit.FlooringInfo}}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-xs-12">
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Unit Attributes</h3>
+				</div>
+				<div class="block-content">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Amenity</th>
+								<th>Available</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Property</td>
+								<td>
+									<span style="color:gray; font-style: italic" *ngIf="unit.PropertyName==null">Unknown</span>
+									<a href="#/properties/{{unit.PropertyId}}/edit">{{unit.PropertyName}}</a>
+								</td>
+							</tr>
+							<tr>
+								<td>Square Feet</td>
+								<td>
+									<span style="color:gray; font-style: italic" *ngIf="unit.SquareFeet==null">Unknown</span>
+									<span>{{unit.SquareFeet}}</span>
+								</td>
+							</tr>
+							<tr>
+								<tr>
+									<td>Bedrooms</td>
+									<td>
+										<span style="color:gray; font-style: italic" *ngIf="unit.NumberOfBedrooms==null">Unknown</span>
+										<span *ngIf="!unit.NumberOfBedrooms">{{unit.NumberOfBedrooms}}</span>
+									</td>
+								</tr>
+								<tr>
+									<td>Bathrooms</td>
+									<td>
+										<span style="color:gray; font-style: italic" *ngIf="unit.NumberOfBaths==null">Unknown</span>
+										<span *ngIf="!unit.NumberOfBaths">{{unit.NumberOfBaths}}</span>
+									</td>
+								</tr>
+								<tr>
+									<td>Gross Potential Rent</td>
+									<td>
+										<span style="color:gray; font-style: italic" *ngIf="unit.GrossPotentialRent==null">Unknown</span>
+										<span *ngIf="!unit.GrossPotentialRent">{{unit.GrossPotentialRent}}</span>
+									</td>
+								</tr>
+								<tr>
+									<td>Status</td>
+									<td>
+										<span style="color:gray; font-style: italic" *ngIf="unit.UnitStatus==null">Unknown</span>
+										<span *ngIf="!unit.UnitStatus">{{unit.UnitStatus}}</span>
+									</td>
+								</tr>
+								<tr>
+									<td>Address</td>
+									<td>
+										<span style="color:gray; font-style: italic" *ngIf="unit.UnitAddress1==null">Unknown</span>
+										<span *ngIf="unit.UnitAddress1!=null && unit.UnitAddress1!=''">{{unit.UnitAddress1}}</span>
+										<br />
+										<span *ngIf="unit.UnitAddress2!=null && unit.UnitAddress2!=''">{{unit.UnitAddress2}}</span>
+									</td>
+								</tr>
+								<tr>
+									<td>Unit Type</td>
+									<td>
+										<span style="color:gray; font-style: italic" *ngIf="unit.UnitType==null">Unknown</span>
+										<span *ngIf="unit.UnitType!=null">{{unit.UnitType}}</span>
+										<br />
+									</td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Lease History</h3>
+				</div>
+				<div class="block-content">
+					<div class="alert alert-warning" *ngIf="leases.length<=0">
+						<h3>No leases</h3>
+						<p>
+							According to our files, this unit has never been leased!
+						</p>
+					</div>
+					<table class="table" *ngIf="leases.length>0">
+						<thead>
+							<tr>
+								<th>Tenant</th>
+								<th>Occ Type</th>
+								<th>Balance</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let lease of leases">
+								<td>
+									<a href="#/units/{{unit.Property}}/edit" *ngIf="!lease.OnboardingComplete">{{lease.FirstName}} {{lease.LastName}}</a>
+									<span class="text-warning" *ngIf="lease.OnboardingComplete==null">Onboarding pending</span>
+								</td>
+								<td>
+
+									<span class="text-warning" *ngIf="lease.OccupantType== 1">Uknowm</span>
+									<span style="color:gray" *ngIf="lease.OccupantType== 2">Former</span>
+									<span class="text-info" *ngIf="lease.OccupantType== 3">Current</span>
+									<span class="text-primary" *ngIf="lease.OccupantType== 4">Info</span>
+								</td>
+								<td>
+									{{lease.BalanceCents}}
+								</td>
+								<td>
+									<a href="#/lease">Details</a>
+									<!--<%= link_to "Details", prop_man.lease_path(lease) %>-->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Unit Inquiries</h3>
+				</div>
+				<div class="block-content">
+					<div class="alert alert-warning">
+						<h2>Content Pending</h2>
+					</div>
+				</div>
+			</div>
+			<style type="text/css">
+				.ticket-wrap {
+					margin-top: 12px;
+					border-bottom: 1px solid gray;
+				}
+				
+				.ticket-wrap:last-child {
+					border-bottom: none;
+				}
+				
+				.ticket-wrap .actions {
+					padding-top: 12px;
+					border-top: 1px dotted lightgray;
+				}
+				
+				.ticket-wrap .body {
+					margin-bottom: 18px;
+					padding: 12px;
+				}
+			</style>
+		</div>
+	</div>
+</div>

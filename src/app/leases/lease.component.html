@@ -1,0 +1,121 @@
+<div class="content bg-gray-lighter">
+	<div class="row items-push">
+		<div class="col-lg-7">
+			<h1 class="page-heading">
+				Leases
+			</h1>
+		</div>
+		<div class="col-lg-5 text-right hidden-xs">
+			<ol class="breadcrumb push-10-t">
+				<li><a href="#/dashboard">DASHBOARD</a></li>
+				<li><a href="#/leases" class="link-effect">LEASES</a></li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<div class="content">
+	<div class="row">
+		<div class="col-md-12" style="margin-bottom: 16px">
+<div class="pull-right">
+	<div class="form-inline">
+		<!--<%= form_tag prop_man.leases_path, method: :get, class: "form-inline" do %>-->
+		<div class="form-group">
+			<!--<%# cache(invoice, namespace: "dasboard-preview" ) do %>
+            <%# end %>
+            <%#= select_tag "property_id", options_for_select(PropMan::Property.all.collect{ |property| [property.Name, property.id] }, params[:property_id]), include_blank: "Select Property", class: "js-select2 form-control" %>-->
+		</div>
+		<div class="form-group">
+			<p-dropdown [options]="occupant" [(ngModel)]="selectedOccupant" [filter]="true" [style]="{'width':'150px'}"></p-dropdown>
+
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary" (click)="clearFilterDetail()">Clear</button>
+			<button class="btn btn-info" (click)="filterLeaseDetail()">Filter</button>
+
+		</div>
+		<!--<% end %>-->
+	</div>
+</div>
+</div>
+</div>
+</div>
+<div class="content">
+	<div class="block">
+		<div class="block-header">
+
+		</div>
+		<div class="block-content">
+			<div class="alert alert-info" *ngIf="leases.length<=0">
+				<h3>No Leases</h3>
+				<p>
+					There are currently no leases on file. Contact your administrator to sync records.
+				</p>
+			</div>
+			<sp-pager [pageName]='pageName' [totalItems]='totalItems' [currentPageFiltered]='currentPageFiltered'></sp-pager>
+			<table id="content_types_index_table" class="table table-striped table-bordered table-hover" *ngIf="leases.length>0">
+				<thead>
+					<tr>
+						<th>PROPERTY</th>
+						<th>UNIT</th>
+						<th>TENANT</th>
+						<th>OCC TYPE</th>
+						<th>BALANCE</th>
+						<th></th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let lease of leases">
+						<td>
+							<span class="text-warning" *ngIf="lease.PropertyName==null || lease.PropertyName==''">Unknown</span>
+							<a href='#/properties/{{lease.PropertyId}}' *ngIf="lease.PropertyName!=''" target="__blank">{{lease.PropertyName}}</a>
+						</td>
+						<td>
+
+							{{lease.UnitId}}
+						</td>
+
+						<td>
+							<span class="text-warning" *ngIf="lease.UnitId==null">Unknown</span>
+							<a href="#/units/{{lease.UnitId}}" *ngIf="lease.UnitId!=null" target="__blank">{{lease.UnitNumber}}</a>
+						</td>
+						<td *ngIf="lease.OnBoardingComplete">
+							<span class="text-danger" *ngIf="lease.TenantId==null">No Tenant</span>
+							<a href="/" *ngIf="lease.TenantId!=null && lease.OnboardingComplete!=null">{{lease.FirstName}} {{lease.LastName}}</a>
+							<span class="text-warning" *ngIf="lease.TenantId!=null && lease.OnboardingComplete==null">Onboarding Pending </span>
+							<!--<% if lease.Tenant.nil? %>
+								<span class="text-danger">No Tenant</span>-->
+							<!--<% elsif lease.Tenant.OnboardingComplete? %>
+									<%= link_to "#{lease.Tenant.FirstName} #{lease.Tenant.LastName}", portal.user_path(lease.Tenant) %>
+										<% else %>
+											<%= link_to raw("<i class=\"fa fa-exclamation\"></i>Unknown User"), portal.user_path(lease.Tenant), "data-toggle" => "popover", "title" => "", "data-content" => "This user account is has been created, but claimed!", "type" => "button", "data-original-title" => "Onboarding Pending!", class: "text-warning" %>
+												<% end %>
+													{{lease.UnitId}}-->
+						</td>
+						<td>
+							<span class="text-warning" *ngIf="lease.OccupantType== 1">Unknown</span>
+							<span style="color:gray" *ngIf="lease.OccupantType== 2">Current</span>
+<span class="text-info" *ngIf="lease.OccupantType== 3">Former</span>
+<span class="text-primary" *ngIf="lease.OccupantType== 4">Future</span>
+</td>
+<td>
+	{{lease.BalanceCents}}
+</td>
+<td>
+	<a href="#/leases/{{lease.Id}}" routerLinkActive="active">
+                Details
+              </a>&nbsp;
+</td>
+
+</tr>
+</tbody>
+</table>
+<nav style="text-align: center">
+<sp-pagination [dataSource]='companies' [totalItems]='totalItems' (currentPageChanged)='onCurrentPageChanged($event)' [currentPageFiltered]='currentPageFiltered'></sp-pagination>
+<!--<%= paginate @amenities, :param_name => :ap, :left => 3, :right => 2 %>-->
+</nav>
+</div>
+</div>
+</div>
+<!-- .container-fluid -->

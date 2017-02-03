@@ -1,0 +1,153 @@
+<div class="content bg-gray-lighter">
+	<div class="row items-push">
+		<div class="col-lg-7">
+			<h1 class="page-heading">
+				Edit PM Unit
+				<small>{{unit.PropertyNumber}}-{{unit.Number}}</small>
+			</h1>
+		</div>
+		<div class="col-lg-5 text-right hidden-xs">
+			<ol class="breadcrumb push-10-t">
+				<li><a [routerLink]="['/Dashboard']" class="link-effect">Dashboard</a></li>
+				<li><a [routerLink]="['/Units']" class="link-effect">Units</a></li>
+				<li><a routerLink="/Units/{{unit.Number}}" class="link-effect">{{unit.PropertyNumber}}-{{unit.Number}}</a></li>
+				<li>Edit</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<!--<div id="error_explanation" class="alert alert-danger">-->
+			<!--<h2><%= pluralize(@unit.errors.count, "error") %> prohibited this unit from being saved:</h2>-->
+
+			<!--<ul>-->
+			<!--<% @unit.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>-->
+			<!--</ul>-->
+			<!--</div>-->
+		</div>
+	</div>
+	<div class="form-horizontal">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="actions pull-right">
+					
+					<button class='btn btn-info' routerLink="#/units/{{unit.Number}}">Back</button>
+					<button class='btn btn-primary' (click)="saveUnitDetail()">Save</button>
+				</div>
+				<br style="clear:both" /> &nbsp;
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="block">
+					<div class="block-header">
+						<ul class="block-options">
+							<li>
+								<button data-action="content_toggle" data-toggle="block-option" type="button">
+									<i class="si si-arrow-up"></i></button>
+							</li>
+							<li>
+								<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+							</li>
+						</ul>
+						<h3 class="block-title">PM Property Attributes</h3>
+					</div>
+					<div class="block-content">
+						<!--<% if current_user.instance_of?(Portal::Webmaster) %>
+						
+					<% end %>-->
+						<div class="form-group">
+							<div class="col-xs-12">
+								<label class="css-input switch switch-sm switch-success">
+								<!--<input 
+								     name="unit[isPublished]" 
+										 [(ngModel)]="isPublished"
+										 type="hidden" 
+										 value="0">-->
+								 <input 
+								     type="checkbox" 
+										 [(ngModel)]="isPublished"
+										 name="unit[isPublished]" 
+										 id="unit_IsPublished">
+										 <span>
+								</span> Published?
+							</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-8">
+				<div class="block">
+					<div class="block-header">
+						<ul class="block-options">
+							<li>
+								<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+							</li>
+							<li>
+								<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+							</li>
+						</ul>
+						<h3 class="block-title">Unit Images</h3>
+					</div>
+					<div class="block-content">
+						<div class="form-group">
+							<span class="col-xs-12">
+							<label>Tile File</label>
+							<br />
+											
+							<a href="http://192.168.1.207:5000/Images/{{unit.Tile}}" target= "__blank" *ngIf="unit.Tile!=null && unit.Tile!=''">
+								<i class="fa fa-search"></i>View Current Tile Image
+							</a>
+							<!--<% if !@unit.Tile.nil? %>
+								<%= link_to raw("<i class=\"fa fa-search\"></i>View Current Tile Image"), @unit.TileUrl, target: "__blank" %>
+							<% else %>-->
+								<span class="text-info" *ngIf="unit.Tile==null || unit.Tile==''">No Current Image</span>
+							<!--<% end %>-->
+							</span>
+							<div class="col-xs-12">
+
+								<input type='file' (change)="fileChangeEvent($event,true)" />
+								<!--<%= f.file_field :TileFile %>-->
+								<span class="text-info">
+								<strong>Recommended Size: </strong>
+								640x820
+								<!--<%= "#{PropMan.property_tile_width}x#{PropMan.property_tile_height}" %>-->
+							</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<span class="col-xs-12">
+							<label>Banner File</label>
+								<a href="http://192.168.1.207:5000/Images/{{unit.Banner}}" target= "__blank" *ngIf="unit.Banner!=null && unit.Banner!=''">
+								<i class="fa fa-search"></i>View Current Banner Image
+							</a>
+							<!--<%= f.label :BannerFile, "Banner File" %>-->
+							<br />
+							<!--<% if !@unit.Banner.nil? %>
+								<%= link_to raw("<i class=\"fa fa-search\"></i>View Current Banner Image"), @unit.BannerUrl, target: "__blank" %>
+							<% else %>-->
+								<span class="text-info" *ngIf="unit.Banner==null || unit.Banner==''">No Current Image</span>
+							<!--<% end %>-->
+							</span>
+							<div class="col-xs-12">
+								<input type='file' (change)="fileChangeEvent($event,false)" />
+								<!--<%= f.file_field :BannerFile %>-->
+								<span class="text-info">
+								<strong>Recommended Size: </strong>
+								1920x812
+								<!--<%= "#{PropMan.property_banner_width}x#{PropMan.property_banner_height}" %>-->
+							</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

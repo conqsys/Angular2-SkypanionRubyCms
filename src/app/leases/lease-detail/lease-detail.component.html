@@ -1,0 +1,258 @@
+<div class="content bg-gray-lighter">
+	<div class="row items-push">
+		<div class="col-lg-7">
+			<h1 class="page-heading">
+				{{lease.TenantId}}
+			</h1>
+		</div>
+		<div class="col-lg-5 text-right hidden-xs">
+			<ol class="breadcrumb push-10-t">
+				<li><a href='#/dashboard'>
+          Dashboard
+        </a></li>
+				<li><a href='#/leases'>
+          Leases
+        </a></li>
+				<li>Details</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<!--
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="pull-right">
+				<%= link_to "Edit", edit_lease_path(@lease), class: "btn btn-primary" %>
+			</div>
+			<br style="clear:both" />
+			&nbsp;
+		</div>
+	</div>
+	-->
+
+
+	<div class="row">
+		<div class="col-md-3 col-xs-12">
+
+			<!--Lease Attribut Info Start-->
+
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Lease Attributes</h3>
+				</div>
+				<div class="block-content">
+					<p>
+						<label>Property</label><br />
+						<span class="text-warning" *ngIf="lease.PropertyName==null && lease.PropertyName==''">Unknown</span>
+						<a href='/properties/{{lease.PropertyId}}' *ngIf="lease.PropertyName!=''">{{lease.PropertyName}}</a>
+					</p>
+					<p>
+						<label>Unit</label><br />
+						<span class="text-warning" *ngIf='lease.UnitId==null'>Unknown</span>
+						<a href='#/leases' *ngIf='lease.UnitId!=null'>{{lease.UnitNumber}}</a>
+					</p>
+					<p>
+						<label>Occupant Name</label><br />
+						<span class="text-warning" *ngIf="lease.OccupantType== 1">Uknowm</span>
+						<span style="color:gray" *ngIf="lease.OccupantType== 2">Former</span>
+						<span class="text-info" *ngIf="lease.OccupantType== 3">Current</span>
+						<span class="text-primary" *ngIf="lease.OccupantType== 4">Info</span>
+					</p>
+				</div>
+			</div>
+
+			<!--Lease Attribut Info End-->
+
+
+			<!--Lease Tenant Info Start-->
+
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Tenant Info</h3>
+				</div>
+				<div class="block-content">
+					<p>
+						<label>Tenant Id</label><br /> {{lease.TenantId}}
+					</p>
+					<p>
+						<label>Tenant Name</label><br /> 
+						<a  *ngIf="lease.OnboardingComplete!=null">{{lease.FirstName}} {{lease.LastName}}</a>
+						<span class="text-warning" *ngIf="lease.OnboardingComplete==null">Onboarding Pending</span>
+					</p>
+					<p>
+						<label>Tenant Email</label><br />
+						<a  *ngIf="lease.OnboardingComplete!=null">{{lease.Email}}</a>
+						<span class="text-warning" *ngIf="lease.OnboardingComplete==null">Onboarding Pending</span>
+						<!--<% if @lease.Tenant.OnboardingComplete? %>
+							<%= mail_to @lease.Tenant.email, @lease.Tenant.email %>
+								<% else %>
+									<span class="text-warning">Onboarding Pending</span>
+									<% end %>-->
+					</p>
+					<hr />
+					<p>
+						<label>Child Info</label><br /> 
+						<span class="text-warning" *ngIf="lease.ChildInfo==''">Unknown</span>
+						<span *ngIf="lease.ChildInfo!=''">{{lease.ChildInfo}}</span>
+					</p>
+					<p>
+						<label>Pet Info</label><br />	
+						<span class="text-warning" *ngIf="lease.PetInfo==''">Unknown</span>
+						<span *ngIf="lease.PetInfo!=''">{{lease.PetInfo}}</span>
+					</p>
+					<p>
+						<label>Auto Info</label><br /> 
+							<span class="text-warning" *ngIf="lease.AutoInfo==''">Unknown</span>
+						<span *ngIf="lease.AutoInfo!=''">{{lease.AutoInfo}}</span>
+					</p>
+					<hr />
+					<p>
+						<label>Bill To Name</label><br /> 
+							<span class="text-warning" *ngIf="lease.BillToName==''">Unknown</span>
+						<span *ngIf="lease.BillToName!=''">{{lease.BillToName}}</span>
+					</p>
+					<p>
+						<label>Bill To Address 1</label><br /> 
+							<span class="text-warning" *ngIf="lease.BillToAdd1==''">Unknown</span>
+						<span *ngIf="lease.BillToAdd1!=''">{{lease.BillToAdd1}}</span>
+					
+
+					</p>
+					<p>
+						<label>Bill To Address 2</label><br /> 
+							<span class="text-warning" *ngIf="lease.BillToAdd2==''">Unknown</span>
+						<span *ngIf="lease.BillToAdd2!=''">{{lease.BillToAdd2}}</span>
+					</p>
+					<p>
+						<label>Bill To Address 3</label><br /> 
+							<span class="text-warning" *ngIf="lease.BillToAdd3==''">Unknown</span>
+						<span *ngIf="lease.BillToAdd3!=''">{{lease.BillToAdd3}}</span>
+					</p>
+				</div>
+			</div>
+
+			<!--Lease Tenant Info End-->
+		</div>
+
+		<div class="col-md-3 col-xs-12">
+			<!--Lease dates Info start-->
+
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Lease Dates</h3>
+				</div>
+				<div class="block-content">
+					<p>
+						<label>Effective Date</label><br /> 
+							<span class="text-warning" *ngIf="lease.EffectiveDate==null">Unknown</span>
+						<span *ngIf="lease.EffectiveDate!=''">{{lease.EffectiveDate}}</span>
+				
+					</p>
+					<p>
+						<label>Expiration Date</label><br />
+						<span class="text-warning" *ngIf="lease.ExpirationDate==null">Unknown</span>
+						<span *ngIf="lease.ExpirationDate!=''">{{lease.ExpirationDate}}</span>
+						
+					</p>
+					<p>
+						<label>Escalation Date</label><br /> 
+							<span class="text-warning" *ngIf="lease.EscalationDate==null">Unknown</span>
+						<span *ngIf="lease.EscalationDate!=''">{{lease.EscalationDate}}</span>
+					
+					</p>
+					<p>
+						<label>Option Or Move Out Date</label><br /> 
+							<span class="text-warning" *ngIf="lease.OptionOrMoveOutDate==null">Unknown</span>
+						<span *ngIf="lease.OptionOrMoveOutDate!=''">{{lease.OptionOrMoveOutDate}}</span>
+					
+					</p>
+					<p>
+						<label>Move In Date</label><br />
+
+							<span class="text-warning" *ngIf="lease.MoveInDate==null">Unknown</span>
+						<span *ngIf="lease.MoveInDate!=''">{{lease.MoveInDate}}</span>
+					
+					</p>
+				</div>
+			</div>
+
+			<!--Lease dates Info end-->
+
+
+			<!--Lease Balance Info start-->
+			<div class="block">
+				<div class="block-header">
+					<ul class="block-options">
+						<li>
+							<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+						</li>
+						<li>
+							<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+						</li>
+					</ul>
+					<h3 class="block-title">Lease Balances</h3>
+				</div>
+				<div class="block-content">
+					<p>
+						<label>Security Deposit</label><br />
+						<span class="text-warning" *ngIf='lease.SecurityDepositCents==0'>Unknown</span>
+						<span *ngIf='lease.SecurityDepositCents!=0'> {{lease.SecurityDepositCents}}</span>
+					</p>
+					<p>
+						<label>Key Deposit</label><br />
+						<span class="text-warning" *ngIf='lease.KeyDepositCents==0'>Unknown</span>
+						<span *ngIf='lease.KeyDepositCents!=0'>{{lease.KeyDepositCents}}</span>
+					</p>
+					<p>
+						<label>Base Sales Amount</label><br />
+						<span class="text-warning" *ngIf='lease.BaseSalesAmountCents==0'>Unknown</span>
+						<span *ngIf='lease.BaseSalesAmountCents!=0'>{{lease.BaseSalesAmountCents}}</span>
+					</p>
+					<p>
+						<label>Parking Deposit</label><br />
+						<span class="text-warning" *ngIf='lease.ParkingDepositCents==0'>Unknown</span>
+						<span *ngIf='lease.ParkingDepositCents!=0'>{{lease.ParkingDepositCents}}</span>
+					</p>
+					<p>
+						<label>Other Deposit</label><br />
+						<span class="text-warning" *ngIf='lease.OtherDepositCents==0'>Unknown</span>
+						<span *ngIf='lease.OtherDepositCents!=0'>{{lease.OtherDepositCents}}</span>
+					</p>
+					<p>
+						<label>Escalation Amount</label><br />
+						<span class="text-warning" *ngIf='lease.EscalationAmountCents==0'>Unknown</span>
+						<span *ngIf='lease.EscalationAmountCents!=0'>{{lease.EscalationAmountCents}}</span>
+					</p>
+				</div>
+			</div>
+			<!--Lease Balance Info end-->
+
+		</div>
+		<!--<h3>Payment Info </h3>-->
+	</div>
+</div>

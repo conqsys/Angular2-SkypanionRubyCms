@@ -1,0 +1,119 @@
+<!--<% 
+      params[:property_id] = @property.id.to_s
+      params[:page] = { number: params[:pup], length: 10 }
+      units = PropMan::Unit.find_advanced(current_ability, params)
+%>-->
+<div class="block">
+  <div class="block-header">
+    <ul class="block-options">
+      <li>
+        <button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+      </li>
+      <li>
+        <button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+      </li>
+    </ul>
+    <h3 class="block-title">Units</h3>
+  </div>
+  <div class="block-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pull-right">
+          <div class="form-inline">
+            <!--<%= form_tag property_path(@property), method: :get, class: "form-inline" do %>-->
+            <div class="form-group">
+              <!--<%#= select_tag "status", options_for_select([["Former", PropMan::UnitStatus.Former], ["Current", PropMan::UnitStatus.Current], ["Future", PropMan::UnitStatus.Future]], params[:status]), { include_blank: "Select Status", class: "js-select2 form-control" } %>-->
+            </div>
+            <div class="form-group">
+              	<p-dropdown [options]="vacancy" [(ngModel)]="selectedVacancy" [filter]="true" [style]="{'width':'150px'}"></p-dropdown>
+              <!--<%= select_tag "vacant", options_for_select([["Vacant", 1], ["Occupied", 0]], params[:vacant]), { include_blank: "Select Vacancy", class: "js-select2 form-control" } %>-->
+            </div>
+            <div class="form-group">
+              	<p-dropdown [options]="publish" [(ngModel)]="selectedPublish" [filter]="true" [style]="{'width':'150px'}"></p-dropdown>
+              <!--<%= select_tag "published", options_for_select([["Published", 1], ["Unpublished", 0]], params[:published]), { include_blank: "Select Publishing", class: "js-select2 form-control" } %>-->
+            </div>
+            <div class="form-group">
+              <input type='text' class="form-control" [(ngModel)]="unitNumber" placeholder="Enter Unit Number">
+              <!--<%= text_field_tag "number", params[:number], class: "form-control", placeholder: "Enter Unit Number" %>-->
+            </div>
+            <div class="form-group">
+              	<button class="btn btn-primary" (click)="filteredPropertyDetail()">Filter</button>
+              <!--<%= submit_tag "Filter", class: "btn btn-primary" %>-->
+            </div>
+          </div>
+          <!--<% end %>-->
+        </div>
+        <div class="pull-left">
+          <div id="batch_publishing_form">
+            <!--<%= form_for(@property.becomes(PropMan::Property), html: { id: "batch_publishing_form" }) do |f| %>
+            <%= f.hidden_field :BatchPublishingStyle, value: 0 %>-->
+            <button class="batch-publish-button btn btn-danger" data-value="-1">Un-Publish All</button>
+            <button class="batch-publish-button btn btn-success" data-value="1">Publish All</button>
+          </div>
+        </div>
+        <br style="clear:both" />
+<!--&nbsp;
+        <%= page_entries_info units %>-->
+</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!--<% if units.nil? || units.count <= 0 %>-->
+    <div class="alert alert-info" *ngIf="units.length<=0">
+      <h3>No Units To Display</h3>
+      <p>
+        There are no units to display for this property. Try adjusting your filters to view units. If you beleive you are receiving
+        this message in error, please contact your site webmaster.
+      </p>
+    </div>
+    <!--<% else %>-->
+    <sp-pager [pageName]='pageName' [totalItems]='totalItems' [currentPageFiltered]='currentPageFiltered' *ngIf="units.length>0"></sp-pager>
+    <table id="content_types_index_table" class="table table-striped table-bordered table-hover" *ngIf="units.length>0">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>No Of Bedrooms</th>
+          <th>Vacant?</th>
+          <th>Published?</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--<% units.each do |unit| %>-->
+        <tr *ngFor="let unit of units">
+          <td>{{unit.Number}}</td>
+          <td>{{unit.NumberOfBedrooms}}</td>
+          <td>
+            <span class="text-warning" *ngIf="unit.Vacant">Vacant</span>
+            <span class="text-success" *ngIf="!unit.Vacant">Occupied</span>
+          </td>
+          <td>
+            <!--<% if unit.Published.nil? %>-->
+            <span class="text-warning" *ngIf="unit.Published">Unpublished</span>
+            <!--<% else %>-->
+            <span class="text-success" *ngIf="!unit.Published">
+                      {{ unit.Published }}
+                      </span>
+            <!--<% end %>-->
+          </td>
+          <td>
+            <a href="#/units/{{unit.Id}}">Details</a>
+            <a href="#/units/{{unit.Id}}/edit">Edit</a>
+            <!--<%= link_to "Details", unit %>
+                    <%= link_to "Edit", edit_unit_path(unit) %>-->
+          </td>
+        </tr>
+        <!--<% end %>-->
+      </tbody>
+    </table>
+    <nav style="text-align: center">
+      <sp-pagination [dataSource]='companies' [totalItems]='totalItems' (currentPageChanged)='onCurrentPageChanged($event)' [currentPageFiltered]='currentPageFiltered'></sp-pagination>
+<!--<%= paginate units, :param_name => :pup, :left => 3, :right => 2 %>-->
+</nav>
+<!--<% end %>-->
+</div>
+<br style="clear:both" />
+<!--&nbsp;-->
+</div>
+</div>
+</div>

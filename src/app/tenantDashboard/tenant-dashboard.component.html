@@ -1,0 +1,145 @@
+<div class="content bg-image" style="background-image: url('/oneui/assets/img/photos/photo8@2x.jpg');">
+	<div class="push-50-t push-15 clearfix">
+		<div class="push-15-r pull-left animated fadeIn">
+			<img class="img-avatar img-avatar-thumb" src="/oneui/assets/img/avatars/avatar13.jpg" alt="">
+		</div>
+		<h1 class="h2 text-white push-5-t animated zoomIn">
+			<!--<% if current_user.OnboardingComplete? %>
+                <%= "#{current_user.FirstName} #{current_user.LastName}" %>
+            <% else %>-->
+			<span class="text-warning">Onboarding Incomplete</span>
+			<!--<% end %>-->
+		</h1>
+		<h2 class="h5 text-white-op animated zoomIn">
+			<strong>Units: </strong>
+			<!--<%= current_user.Leases.each.collect{ |aLease| "#{aLease.Unit.Property.Number}-#{aLease.Unit.Number}" }.join(" || ") %>-->
+		</h2>
+	</div>
+</div>
+<div class="content bg-white border-b">
+	<div class="row items-push text-uppercase">
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="font-w700 text-gray-darker animated fadeIn">Current Balance</div>
+			<a href="#" class="h2 font-w300 text-primary animated flipInX" *ngIf="tenantDashboard!=undefined">{{tenantDashboard.CurrentBalanceCents}}</a>
+            <a href="#" class="h2 font-w300 text-primary animated flipInX" *ngIf="tenantDashboard==undefined">0</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="font-w700 text-gray-darker animated fadeIn">Balance Due</div>
+            <span class="text-info" *ngIf="tenantDashboard==undefined || tenantDashboard.ExpirationDate==null">None</span>
+			<a href="#" class="h2 font-w300 animated flipInX" *ngIf="tenantDashboard!=undefined && tenantDashboard.ExpirationDate!=null">{{tenantDashboard.ExpirationDate}}</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="font-w700 text-gray-darker animated fadeIn">&nbsp;</div>
+			<a href="https://test.paylease.net/sso_payment?pm_id=26463815&key=HJWUbdhhu2DZmN0i2HBH&resident_id=7IbLyO4Ioy9c2AViS15F&property_id=FsArJ8CH&first_name=Test_Resident&last_name=LastName&amount=101.12&hmac=1d8957862db846091b58a62da3c4ca452ae451fc04af60ea8b66eeebce521485" class="h2 font-w300 text-primary animated flipInX" target= "__blank">Pay Now</a>
+		</div>
+	</div>
+</div>
+
+<div class="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- Main Dashboard Chart -->
+			<!-- Latest Sales Widget -->
+			<div class="block">
+				<ul class="nav nav-tabs nav-tabs-alt" data-toggle="tabs">
+					<li class="active">
+						<a data-target="#btabs-alt-static-home">This Month</a>
+					</li>
+					<li class="">
+						<a data-target="#btabs-alt-static-profile">6 Months</a>
+					</li>
+					<li class="">
+						<a data-target="#btabs-alt-static-profile">12 Months</a>
+					</li>
+					<li class="pull-right">
+						<a data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></a>
+					</li>
+					<li class="pull-right">
+						<a data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></a>
+					</li>
+				</ul>
+				<div class="block-content tab-content">
+					<div class="tab-pane active" id="btabs-alt-static-home">
+						<table class="table remove-margin font-s13">
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Date</th>
+									<th>Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">Admin Template</a></td>
+									<td class="hidden-xs text-muted text-right" style="width: 70px;">23:01</td>
+									<td class="font-w600 text-success text-right" style="width: 70px;">+ $21</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">WP Theme</a></td>
+									<td class="hidden-xs text-muted text-right">22:15</td>
+									<td class="font-w600 text-success text-right">+ $52</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">HTML Template</a></td>
+									<td class="hidden-xs text-muted text-right">22:01</td>
+									<td class="font-w600 text-success text-right">+ $16</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">Admin Template</a></td>
+									<td class="hidden-xs text-muted text-right">21:45</td>
+									<td class="font-w600 text-success text-right">+ $23</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">WP Theme</a></td>
+									<td class="hidden-xs text-muted text-right">21:15</td>
+									<td class="font-w600 text-success text-right">+ $48</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">Admin Template</a></td>
+									<td class="hidden-xs text-muted text-right">20:11</td>
+									<td class="font-w600 text-success text-right">+ $23</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">WP Theme</a></td>
+									<td class="hidden-xs text-muted text-right">20:01</td>
+									<td class="font-w600 text-success text-right">+ $50</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">HTML Template</a></td>
+									<td class="hidden-xs text-muted text-right">19:35</td>
+									<td class="font-w600 text-success text-right">+ $16</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">WP Theme</a></td>
+									<td class="hidden-xs text-muted text-right">19:17</td>
+									<td class="font-w600 text-success text-right">+ $60</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">WP Theme</a></td>
+									<td class="hidden-xs text-muted text-right">17:49</td>
+									<td class="font-w600 text-success text-right">+ $59</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">Admin Template</a></td>
+									<td class="hidden-xs text-muted text-right">20:11</td>
+									<td class="font-w600 text-success text-right">+ $23</td>
+								</tr>
+								<tr>
+									<td class="font-w600"><a href="javascript:void(0)">WP Theme</a></td>
+									<td class="hidden-xs text-muted text-right">20:01</td>
+									<td class="font-w600 text-success text-right">+ $50</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane" id="btabs-alt-static-profile">
+						<h4 class="font-w300 push-15">Settings Tab</h4>
+						<p>...</p>
+					</div>
+				</div>
+				<div class="block-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

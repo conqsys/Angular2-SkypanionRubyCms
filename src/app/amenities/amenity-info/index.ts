@@ -1,0 +1,1 @@
+export * from './amenity-info.component'

@@ -1,0 +1,115 @@
+<!--<div class="content bg-gray-lighter">
+  <div class="row items-push">
+    <div class="col-lg-7">
+        <h1 class="page-heading" *ngIf="isEdit">
+          Edit {{entity.Name}} <small>Change this amenity's settings!</small>
+        </h1>
+        <h1 class="page-heading" *ngIf="!isEdit">
+          Amenities <small>Create a new amenity.</small>
+        </h1>
+    </div>
+    <div class="col-lg-5 text-right hidden-xs">
+      <ol class="breadcrumb push-10-t">
+        <li>Home</li>
+        <li *ngIf="isEdit">Amentities</li>
+        <li *ngIf="isEdit">
+          <a href='/units/{{amenity.Id}}/edit' routerLinkActive="active" class="link-effect">Edit</a>
+        </li>
+        <li *ngIf="!isEdit">
+          <a [routerLink]="['./']" routerLinkActive="active" class="link-effect">PM PROPERTIES</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>-->
+<div class="content">
+	<!-- rander edit and add form -->
+</div>
+<!-- .container-fluid -->
+
+
+
+<div class="content bg-gray-lighter">
+	<div class="row items-push">
+		<div class="col-lg-7">
+			<h1 class="page-heading">
+				<i class="fa {{amenity.Icon}}"></i> {{amenity.Name}}<small> details.</small>
+			</h1>
+		</div>
+		<div class="col-lg-5 text-right hidden-xs">
+			<ol class="breadcrumb push-10-t">
+				<li><a href="#/dashboard">Dashboard</a>
+					<li><a href="#/amenities">Amenities</a>
+						<li>{{amenity.Name }}</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<div class="content">
+	<div class="row" id="extraPadding"style="padding-bottom: 2%">
+		<div class="col-xs-12">
+			<div class="pull-right">
+				<a href="#/amenities/{{amenity.Id}}/edit" class="btn btn-primary">Edit</a>
+			</div>
+			<br style="clear:both" />
+			<!--&nbsp;-->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<div class="block">
+				<div class="block-header">
+					<h3 class="block-title">Description</h3>
+				</div>
+				<div class="block-content" [innerHTML]='amenity.Description'>
+					<!--{{amenity.Description}}-->
+					<!--<%= raw(@amenity.Description) %>-->
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class="block">
+				<div class="block-header">
+					<h3 class="block-title">All Entites</h3>
+				</div>
+				<div class="block-content">
+					<div class="alert alert-warning" *ngIf='amenity.EntityAmenities==null && amenity.EntityAmenities.length<=0'>
+						<h2>Unused</h2>
+						<p>
+							This amenity hasn't been assigned to any properties
+						</p>
+					</div>
+					<table class="table table-striped table-bordered table-hover" *ngIf='amenity.EntityAmenities!=null || amenity.EntityAmenities.length>0'>
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th>Name</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr *ngFor="let item of amenity.EntityAmenities">
+								<td>
+									<span *ngIf="item.EntityId==null" class="text-warning">Unknown</span>
+									<span *ngIf="item.EntityId!=null">{{item.EntityType}}</span>
+								</td>
+								<td>
+									<span class="text-warning" *ngIf="item.EntityId==null">Unknown</span>
+									<span *ngIf="item.EntityId!=null">{{item.PropertyName}}</span>
+								</td>
+								<td>
+									<span class="text-warning" *ngIf="item.EntityId==null">Unknown</span>
+									<a *ngIf="item.EntityId!=null" href="#/properties/{{item.Id}}">Details</a>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<!--<%= link_to "Details", entity_amenity.Entity %>-->

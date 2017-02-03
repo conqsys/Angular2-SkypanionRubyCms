@@ -1,0 +1,125 @@
+<div class="content bg-gray-lighter">
+	<div class="row items-push">
+		<div class="col-lg-7">
+			<h1 class="page-heading">
+				Edit PM Property
+				<small>{{property.Name}} / {{property.Number}}</small>
+			</h1>
+		</div>
+		<div class="col-lg-5 text-right hidden-xs">
+			<ol class="breadcrumb push-10-t">
+				<li><a>Dashboard</a></li>
+				<li><a>Properties</a></li>
+				<li><a>{{property.Name}}</a></li>
+				<li>Edit</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<div class="content content-narrow">
+	<div class="form-horizontal">
+		<div class="row">
+			<div class="col-xs-12" style="margin-bottom:16px">
+<div class="actions pull-right">
+	<button class="btn btn-info" (click)="backtoProperty()">Back</button>
+	<button class="btn btn-primary" (click)="saveProperty()">Save</button>
+	<!--<%= link_to "Back", property_path(@property), class: "btn btn-info" %>-->
+	<!--<%= f.submit "Save", class: "btn btn-primary" %>-->
+</div>
+<br style="clear:both" /> &nbsp;
+</div>
+</div>
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		<div class="block">
+			<div class="block-header">
+				<ul class="block-options">
+					<li>
+						<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+					</li>
+				</ul>
+				<h3 class="block-title">Property Descriptives</h3>
+			</div>
+			<div class="block-content">
+				<div class="form-group">
+					<label class="col-xs-12">Amenities</label>
+					<div class="col-xs-12">
+						<p-multiSelect [options]="AmenitySelector" [(ngModel)]="selectedAmenity"></p-multiSelect>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12">Description</label>
+					<!--<%= f.label :Description, class: "col-xs-12" %>-->
+					<div class="col-xs-12">
+						<textarea class="form-control" [(ngModel)]='description'>Description</textarea>
+						<!--<%= f.text_area :Description, class: "form-control" %>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-xs-12">
+		<div class="block">
+			<div class="block-header">
+				<ul class="block-options">
+					<li>
+						<button data-action="fullscreen_toggle" data-toggle="block-option" type="button">
+										<i class="si si-size-fullscreen"></i>
+									</button>
+					</li>
+				</ul>
+				<h3 class="block-title">Property Settings</h3>
+			</div>
+			<div class="block-content">
+				<strong>Publishing</strong>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<label class="css-input switch switch-sm switch-success">
+							 <input 
+								     type="checkbox" 
+										 [(ngModel)]="isPublished"
+										 name="unit[isPublished]" 
+										 id="unit_IsPublished">
+								<!-- check box -->
+								<!--<%= f.check_box :IsPublished %><span></span> Published?-->
+							</label>
+					</div>
+				</div>
+				<strong>Images</strong>
+				<div class="form-group">
+					<label class="col-xs-12">Tile</label>
+					<!--<%= f.label :TileFile, "Tile", class: "col-xs-12" %>-->
+					<div class="col-xs-12">
+						<input type='file' (change)="fileChangeEvent($event,true)" />
+						<span class="text-info">
+										<strong>Recommended Size: 640x820 </strong>
+										</span>
+						<!--<%= "#{PropMan.property_banner_width}x#{PropMan.property_banner_height}" %>-->
+						<!--</span>-->
+
+
+						<!--<%= f.file_field :TileFile %>-->
+						<!--<span class="text-info">
+								<strong>Recommended Size: </strong>
+								<%= "#{PropMan.property_tile_width}x#{PropMan.property_tile_height}" %>
+							</span>-->
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12">Banner</label>
+
+					<!--<%= f.label :BannerFile, "Banner", class: "col-xs-12" %>-->
+					<div class="col-xs-12">
+						<input type='file' (change)="fileChangeEvent($event,false)" />
+						<!--<%= f.file_field :BannerFile %>-->
+						<span class="text-info">
+								<strong>Recommended Size: 1920x812  </strong>
+								<!--<%= "#{PropMan.property_banner_width}x#{PropMan.property_banner_height}" %>-->
+							</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
