@@ -3,7 +3,7 @@ import { AmenitiesModel } from '../shared/model/amenities.model';
 import { AmenitiesService } from './amenities.service';
 import { ConfirmService } from '../shared/service/confirm.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
-var App = require('../../public/oneui/assets/js/app.js');
+var App = require('../../assets/public/oneui/assets/js/app.js');
 
 @Component({
 	selector: 'amenities',

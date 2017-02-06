@@ -8,7 +8,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { AppState } from './app.service';
-// import * as App from '../public/oneui/assets/js/app.js';
+// import * as App from '../assets/public/oneui/assets/js/app.js';
 // import * as Scroll from '../public/oneui/assets/js/core/jquery.slimscroll.min.js';
 /*
  * App Component

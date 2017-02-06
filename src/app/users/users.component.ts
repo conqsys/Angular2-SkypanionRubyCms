@@ -4,7 +4,7 @@ import { UsersService } from './users.service';
 import { ConfirmService } from '../shared/service/confirm.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-var App = require('../../public/oneui/assets/js/app.js');
+var App = require('../../assets/public/oneui/assets/js/app.js');
 
 @Component({
 	selector: 'users',

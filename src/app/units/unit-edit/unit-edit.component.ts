@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UnitModel } from '../../shared/model/unit.model';
 import { UploadService } from '../../shared/service/upload.service';
 import { UnitService } from '../unit.service';
-var App =require('../../../public/oneui/assets/js/app.js');
+var App =require('../../../assets/public/oneui/assets/js/app.js');
 @Component({
 	selector: 'unit-edit',
 	templateUrl: 'unit-edit.component.html',

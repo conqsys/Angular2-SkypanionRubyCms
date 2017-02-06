@@ -8,7 +8,7 @@ import { SelectItem } from 'primeng/primeng';
 import { UnitService } from './unit.service';
 import { PropertyService } from '../properties/property.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
-var App = require('../../public/oneui/assets/js/app.js');
+var App = require('../../assets/public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'app-unit',

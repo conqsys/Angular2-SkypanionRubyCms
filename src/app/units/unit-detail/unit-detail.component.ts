@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UnitModel } from '../../shared/model/unit.model';
 import { LeaseModel } from '../../shared/model/Lease.model';
 import { UnitService } from '../unit.service';
-var App =require('../../../public/oneui/assets/js/app.js');
+var App =require('../../../assets/public/oneui/assets/js/app.js');
 @Component({
 	selector: 'unit-detail',
 	templateUrl: 'unit-detail.component.html'
