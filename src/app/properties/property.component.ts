@@ -1,18 +1,20 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  AfterViewInit
 } from '@angular/core';
 import { PropertyModel } from '../shared/model/property.model';
 import { PropertyService } from './property.service';
 import { SelectItem } from 'primeng/primeng';
 import { CurrentPageArguments } from '../pagination/pagination.component';
+var App = require('../../public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'app-properties',
   styleUrls: ['./property.component.css'],
   templateUrl: './property.component.html'
 })
-export class PropertyComponent implements OnInit {
+export class PropertyComponent implements OnInit, AfterViewInit {
 
   private properties: Array<PropertyModel> = [];
   private cities: SelectItem[];
@@ -34,6 +36,10 @@ export class PropertyComponent implements OnInit {
 
   public ngOnInit() {
     this.getProperties();
+  }
+  ngAfterViewInit() {
+
+    App.init('uiBlocks');
   }
   private get currentPageFiltered(): CurrentPageArguments {
     return this._currentPage;

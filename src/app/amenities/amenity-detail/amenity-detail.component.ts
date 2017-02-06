@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AmenitiesModel, EntityAmenities } from '../../shared/model/amenities.model';
 import { AmenitiesService } from '../amenities.service';
+var App = require('../../../public/oneui/assets/js/app.js');
 @Component({
   selector: 'amenity-detail',
   templateUrl: 'amenity-detail.component.html',
   styleUrls: ['amenity-detail.component.css']
 })
-export class AmenityDetailComponent implements OnInit {
+export class AmenityDetailComponent implements OnInit, AfterViewInit {
 
   amenity: AmenitiesModel = new AmenitiesModel();
 
@@ -24,7 +25,10 @@ export class AmenityDetailComponent implements OnInit {
     this.getParameterValue();
 
   }
+ngAfterViewInit() {
 
+    App.init('uiBlocks');
+  }
   public getParameterValue(): void {
     this.Id = this.route.params['value'].Id;
     this.getAmenityDetail();

@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyModel } from './index';
 import { PropertyService } from '../property.service';
 import { AmenitiesService } from '../../amenities/amenities.service';
-
+var App = require('../../../public/oneui/assets/js/app.js');
 @Component({
 	selector: 'property-edit',
 	templateUrl: 'property-edit.component.html',
 	styleUrls: ['property-edit.component.css']
 })
 
-export class PropertyEditComponent implements OnInit {
+export class PropertyEditComponent implements OnInit, AfterViewInit {
 
 	private Id: number;
 	private property: PropertyModel = new PropertyModel();
@@ -33,6 +33,10 @@ export class PropertyEditComponent implements OnInit {
 	ngOnInit() {
 		this.getParameterValue();
 	}
+	ngAfterViewInit() {
+
+    App.init('uiBlocks');
+  }
 	private getParameterValue(): void {
 		this.Id = this.route.params['value'].Id;
 		this.getAmenitySelector();
@@ -90,6 +94,7 @@ export class PropertyEditComponent implements OnInit {
 		})
 	}
 	private backtoProperty(): void {
-		this.router.navigate['/properties'];
+	
+		this.router.navigate(['/properties']);
 	}
 }

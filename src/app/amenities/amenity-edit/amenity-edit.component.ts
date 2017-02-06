@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AmenitiesModel } from '../../shared/model/amenities.model';
 import { AmenitiesService } from '../amenities.service';
+var App = require('../../../public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'amenity-edit',
@@ -9,7 +10,7 @@ import { AmenitiesService } from '../amenities.service';
   styleUrls: ['amenity-edit.component.css']
 })
 
-export class AmenityEditComponent implements OnInit {
+export class AmenityEditComponent implements  AfterViewInit {
 
   private reqMsg: string = 'can' + 't be blank';
 
@@ -21,15 +22,21 @@ export class AmenityEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private amenitiesService: AmenitiesService) {
-    this.amenity.Description = `<p></p>`;
-  }
-  ngOnInit() {
+  //  this.amenity.Description = `<p></p>`;
     this.getParameterValue();
   }
+
+  ngAfterViewInit() {
+    App.init('uiBlocks');
+     setTimeout(() => {
+    this.getAmenityDetail();
+     },200)
+  }
+
   public getParameterValue(): void {
     // this.route.params.subscribe((params) => {
     this.Id = this.route.params['value'].Id;
-    this.getAmenityDetail();
+
     //  });
 
   }
@@ -37,6 +44,7 @@ export class AmenityEditComponent implements OnInit {
     this.amenitiesService.getAmenityDetails(this.Id).then(result => {
       if (result) {
         this.amenity = result;
+        console.log(this.amenity);
       }
     });
   }

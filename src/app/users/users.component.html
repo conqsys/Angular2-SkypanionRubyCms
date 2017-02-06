@@ -23,14 +23,14 @@
 	<div class="form-inline">
 		<div class="form-group">
 
-		 <p-dropdown [options]="userType" [(ngModel)]="seletectedUserType" [filter]="true" [style]="{'width':'150px'}">
-				</p-dropdown>
-				<!--<p-dropdown [options]="status" [(ngModel)]="seletectedStatus" [filter]="true" [style]="{'width':'150px'}"></p-dropdown>-->
-				<!--<% 
+			<p-dropdown [options]="userType" [(ngModel)]="seletectedUserType" [filter]="true" [style]="{'width':'150px'}">
+			</p-dropdown>
+			<!--<p-dropdown [options]="status" [(ngModel)]="seletectedStatus" [filter]="true" [style]="{'width':'150px'}"></p-dropdown>-->
+			<!--<% 
 
 						<p-dropdown [options]="userType" [(ngModel)]="seletectedUserType" [filter]="true" [style]="{'width':'150px'}"></p-dropdown>
 						<!<p-dropdown [options]="status" [(ngModel)]="seletectedStatus" [filter]="true" [style]="{'width':'150px'}"></p-dropdown>-->
-				<!--<% 
+			<!--<% 
 
               options = [["Webmaster", Portal::Webmaster], ["Adminstrator", Portal::Administrator]]
               if defined?(PropMan) && @settings.ModulesEnabled.include?(PropMan)
@@ -56,57 +56,64 @@
 <div class="content">
 	<div class="block">
 		<div class="block-header">
-			<h3 class="block-title">
-				<sp-pager [pageName]='pageName' [totalItems]='totalItems' [currentPageFiltered]='currentPageFiltered'></sp-pager>
-				<!--<%= page_entries_info @users %>-->
-			</h3>
+			<ul class="block-options">
+				<li>
+					<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+				</li>
+			</ul>
 		</div>
 		<div class="block-content">
-			<table id="content_types_index_table" class="table table-striped table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<!--<% if can?(:create, Portal::Member) %>-->
-						<th>Status</th>
-						<!--<% end %>-->
-						<th>Type</th>
-						<th>User Name</th>
-						<th>Email</th>
-						<th></th>
-						<th *ngIf="auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator'">Activate</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!--<% @users.each do |aUser| %>
+		<h3 class="block-title">
+			<sp-pager [pageName]='pageName' [totalItems]='totalItems' [currentPageFiltered]='currentPageFiltered'></sp-pager>
+			<!--<%= page_entries_info @users %>-->
+		</h3>
+	
+
+		<table id="content_types_index_table" class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<!--<% if can?(:create, Portal::Member) %>-->
+					<th>Status</th>
+					<!--<% end %>-->
+					<th>Type</th>
+					<th>User Name</th>
+					<th>Email</th>
+					<th></th>
+					<th *ngIf="auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator'">Activate</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--<% @users.each do |aUser| %>
 						<% if defined?(PropMan) && @settings.ModulesEnabled.include?(PropMan) %>
 							<% onboarding_pending = (aUser.instance_of?(PropMan::Tenant) && aUser.OnboardingComplete.nil?) %>
 								<% end %>-->
-					<tr *ngFor="let user of users">
-						<td>
-							<!--<% if defined?(onboarding_pending) && onboarding_pending %>
+				<tr *ngFor="let user of users">
+					<td>
+						<!--<% if defined?(onboarding_pending) && onboarding_pending %>
 								<i class="text-warning">Onboarding Pending</span>
                 <% elsif !aUser.Profile.nil? %>
                   <%= aUser.Profile.FirstName %> <%= aUser.Profile.LastName %>
                 <% else %>
                   <%= aUser.username %>
                 <% end %>-->
-							<span><i class="text-warning" *ngIf="user.OnboardingComplete">Onboarding Pending</i></span>
-							<span *ngIf="user.ProfileId!=null && !user.OnboardingComplete">{{user.FirstName+" "+user.LastName}}</span>
-							<span *ngIf="user.ProfileId==null && !user.OnboardingComplete">{{user.UserName}}</span>
-						</td>
-						<td>
-							<!--<% if aUser.confirmed? %>-->
-							<span class="text-success" *ngIf='user.ConfirmedDate!=null'>Confirmed</span>
-							<!--<% else %>-->
-							<span class="text-warning" *ngIf='user.ConfirmedDate==null'>Unconfirmed</span>
-							<!--<% end %>-->
-						</td>
-						<td>
-							<span *ngIf="user.Type=='Portal::Webmaster'" class="text-primary">Webmaster</span>
-							<span *ngIf="user.Type=='Portal::Administrator'" class="text-info">Administrator</span>
-							<span *ngIf="user.Type=='Portal::Member'" class="text-success">Account Member</span>
-							<!-- instance_of variable needs to implement on database -->
-							<!--<% elsif defined?(DeveloperCenter) && aUser.instance_of?(DeveloperCenter::Developer) %>
+						<span><i class="text-warning" *ngIf="user.OnboardingComplete">Onboarding Pending</i></span>
+						<span *ngIf="user.ProfileId!=null && !user.OnboardingComplete">{{user.FirstName+" "+user.LastName}}</span>
+						<span *ngIf="user.ProfileId==null && !user.OnboardingComplete">{{user.UserName}}</span>
+					</td>
+					<td>
+						<!--<% if aUser.confirmed? %>-->
+						<span class="text-success" *ngIf='user.ConfirmedDate!=null'>Confirmed</span>
+						<!--<% else %>-->
+						<span class="text-warning" *ngIf='user.ConfirmedDate==null'>Unconfirmed</span>
+						<!--<% end %>-->
+					</td>
+					<td>
+						<span *ngIf="user.Type=='Portal::Webmaster'" class="text-primary">Webmaster</span>
+						<span *ngIf="user.Type=='Portal::Administrator'" class="text-info">Administrator</span>
+						<span *ngIf="user.Type=='Portal::Member'" class="text-success">Account Member</span>
+						<!-- instance_of variable needs to implement on database -->
+						<!--<% elsif defined?(DeveloperCenter) && aUser.instance_of?(DeveloperCenter::Developer) %>
                   <span class="text-info">Developer</span>
                 <% elsif defined?(CrmMan) && aUser.instance_of?(CrmMan::Customer) %>
                   <span class="text-success">Customer</span>
@@ -114,37 +121,37 @@
                   <span class="text-success">Tenant</span>
                 <% else %>
               		<span class="text-warning">Unknown</span>-->
-							<!--<% end %>-->
-						</td>
-						<td>
-							{{user.UserName}}
-						</td>
-						<td>
-							<span *ngIf="user.OnboardingComplete">Onboarding Pending</span>
-							<span *ngIf="!user.OnboardingComplete">{{user.Email}}</span>
-						</td>
-						<td>
+						<!--<% end %>-->
+					</td>
+					<td>
+						{{user.UserName}}
+					</td>
+					<td>
+						<span *ngIf="user.OnboardingComplete">Onboarding Pending</span>
+						<span *ngIf="!user.OnboardingComplete">{{user.Email}}</span>
+					</td>
+					<td>
 
-							<a href="#/users/{{user.Id}}" routerLinkActive="active">
+						<a href="#/users/{{user.Id}}" routerLinkActive="active">
                 View
               </a>&nbsp;
-							<a href="#/users/{{user.Id}}/edit" routerLinkActive="active">
+						<a href="#/users/{{user.Id}}/edit" routerLinkActive="active">
                 Edit
               </a>&nbsp;
-							<a (click)='destroyUserDetail(user.Id)'>
+						<a (click)='destroyUserDetail(user.Id)'>
                 Destroy
               </a>
-						</td>
-						<td *ngIf="(auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator')">
-							<a href="javascript:void" (click)="activateUser(user.Id)" *ngIf="(auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator') && user.ConfirmedDate==null">
+					</td>
+					<td *ngIf="(auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator')">
+						<a href="javascript:void" (click)="activateUser(user.Id)" *ngIf="(auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator') && user.ConfirmedDate==null">
                 Activate
               </a>
-							<span class="text-info" *ngIf="(auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator') && user.ConfirmedDate!=null">Activated</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<nav style="text-align: center">
+						<span class="text-info" *ngIf="(auth.type=='Portal::Webmaster' || auth.type=='Portal::Administrator') && user.ConfirmedDate!=null">Activated</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<nav style="text-align: center">
 <sp-pagination [dataSource]='companies' [totalItems]='totalItems' (currentPageChanged)='onCurrentPageChanged($event)' [currentPageFiltered]='currentPageFiltered'></sp-pagination>
 <!--<%= paginate @users, :param_name => :ctp, :left => 3, :right => 2 %>-->
 </nav>

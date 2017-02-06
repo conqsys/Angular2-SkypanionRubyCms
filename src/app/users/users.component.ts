@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { UsersModel } from '../shared/model/users.model';
 import { UsersService } from './users.service';
 import { ConfirmService } from '../shared/service/confirm.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-
+var App = require('../../public/oneui/assets/js/app.js');
 
 @Component({
 	selector: 'users',
@@ -12,7 +12,7 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 	styleUrls: ['./users.component.css']
 })
 
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, AfterViewInit {
 
 	private users: Array<UsersModel> = [];
 	private links: string[] = [];
@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
 	constructor(public usersService: UsersService,
 		private confirmService: ConfirmService
 	) {
-		
+
 		this.generateUserType();
 		this.generateStatusType();
 		let auth = JSON.parse(Cookie.get('auth'));
@@ -41,6 +41,10 @@ export class UsersComponent implements OnInit {
 
 	ngOnInit() {
 		this.getUsers();
+	}
+	ngAfterViewInit() {
+
+		App.init('uiBlocks');
 	}
 	private get currentPageFiltered(): CurrentPageArguments {
 		return this._currentPage;
@@ -102,7 +106,7 @@ export class UsersComponent implements OnInit {
 	}
 	private clearFilterElement(): void {
 		this.seletectedUserType = '';
-		this.seletectedStatus=null;
+		this.seletectedStatus = null;
 		this.getUsers();
 	}
 	private filterUser(): void {

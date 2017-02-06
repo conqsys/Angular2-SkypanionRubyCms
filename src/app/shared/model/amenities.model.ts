@@ -2,7 +2,7 @@ export class AmenitiesModel {
   Id: number = 0;
   Type: string = '';
   Name: string = '';
-  Description: string = '';
+  Description: string = '<p></p>';
   Icon: string = '';
   CreatedAt: string = '';
   UpdatedAt: string = '';

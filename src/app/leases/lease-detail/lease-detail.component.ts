@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { LeaseModel } from '../../shared/model/lease.model';
 import { LeaseService } from '../lease.service';
+var App = require('../../../public/oneui/assets/js/app.js');
 @Component({
 	selector: 'lease-detail',
 	templateUrl: 'lease-detail.component.html',
 	styleUrls: ['lease-detail.component.css']
 })
-export class LeaseDetailComponent implements OnInit {
+export class LeaseDetailComponent implements OnInit,AfterViewInit {
 
 	lease: LeaseModel;
 	private Id: number;
@@ -22,6 +23,10 @@ export class LeaseDetailComponent implements OnInit {
 	ngOnInit() {
 	
 	}
+	ngAfterViewInit() {
+
+    App.init('uiBlocks');
+  }
 
 	getLease() {
 		this.leaseService.getLease(this.Id).then(result => {

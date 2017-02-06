@@ -23,60 +23,71 @@
 	</div>
 </div>
 <div class="content form-horizontal">
-	<div class="row"  id="extraPadding">
+	<div class="row" id="extraPadding">
 		<div class="col-xs-12">
 			<div class="actions pull-right">
 				<button class='btn btn-primary pull-right' (click)="saveAmenityDetail()">Save</button>
 				<!--<%= f.submit "Save", class: "btn btn-primary pull-right" %>-->
 			</div>
 			<br style="clear:both" />
-			<!--&nbsp;-->
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="block">
-				<div class="block-header">
-					<h3 class="block-title">Amenity Attribtues</h3>
+<!--&nbsp;-->
+</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="block">
+			<div class="block-header">
+				<ul class="block-options">
+					<li>
+						<button data-action="content_toggle" data-toggle="block-option" type="button"><i class="si si-arrow-up"></i></button>
+					</li>
+					<li>
+						<button data-action="fullscreen_toggle" data-toggle="block-option" type="button"><i class="si si-size-fullscreen"></i></button>
+					</li>
+				</ul>
+				<h3 class="block-title">Amenity Attribtues</h3>
+			</div>
+			<div class="block-content">
+				<div class="form-group " [ngClass]="{'has-error': validateCheck && !isValidateName }">
+					<label class="col-xs-12">Name</label>
+					<div class="col-xs-12">
+						<input type="text" [(ngModel)]="amenity.Name" class="form-control" placeholder="Enter a name for this amenity">
+						<div class="help-block animated fadeInDown" *ngIf='validateCheck && !isValidateName'>
+							{{reqMsg}}
+						</div>
+
+					</div>
 				</div>
-				<div class="block-content">
-					<div class="form-group " [ngClass]="{'has-error': validateCheck && !isValidateName }">
-						<label class="col-xs-12">Name</label>
-						<div class="col-xs-12">
-							<input type="text" [(ngModel)]="amenity.Name" class="form-control" placeholder="Enter a name for this amenity">
-							<div class="help-block animated fadeInDown" *ngIf='validateCheck && !isValidateName'>
-								{{reqMsg}}
-							</div>
 
+				<div class="form-group" [ngClass]="{'has-error': validateCheck && !isValidateIcon }">
+					<label class="col-xs-12">Icon</label>
+					<div class="col-xs-12">
+
+						<!--<input type="text" [(ngModel)]="amenity.Icon" class="form-control icp icp-auto" placeholder="Click to select icon">-->
+						<icon-picker [(ngModel)]="amenity.Icon"></icon-picker>
+						<!--<span class="input-group-addon iconpicker-component"><i class="fa fa-fw ti-volume"></i></span>-->
+
+						<div class="help-block animated fadeInDown" *ngIf='validateCheck && !isValidateIcon'>
+							{{reqMsg}}
 						</div>
-					</div>
 
-					<div class="form-group" [ngClass]="{'has-error': validateCheck && !isValidateIcon }">
-						<label class="col-xs-12">Icon</label>
-						<div class="col-xs-12">
-						
-								<!--<input type="text" [(ngModel)]="amenity.Icon" class="form-control icp icp-auto" placeholder="Click to select icon">-->
-								<icon-picker [(ngModel)]="amenity.Icon" ></icon-picker>
-								<!--<span class="input-group-addon iconpicker-component"><i class="fa fa-fw ti-volume"></i></span>-->
-						
-							<div class="help-block animated fadeInDown" *ngIf='validateCheck && !isValidateIcon'>
-								{{reqMsg}}
-							</div>
-
-						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<label>Description</label>
-							<ckeditor [(ngModel)]="amenity.Description" debounce="500">
-							</ckeditor>
-							<div class="help-block animated fadeInDown">
-							</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<label>Description</label>
+						<ckeditor [(ngModel)]="amenity.Description" debounce="600">
+						</ckeditor>
+						<!--<textarea name="editor1" id="editor1" rows="10" cols="80" [(ngModel)]="amenity.Description">
+      
+     </textarea>-->
+						<div class="help-block animated fadeInDown">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 </div>

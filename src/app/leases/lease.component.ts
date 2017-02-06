@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeaseModel } from '../shared/model/lease.model';
 import { LeaseService } from './lease.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
+var App = require('../../public/oneui/assets/js/app.js');
 
 @Component({
 	selector: 'lease',
@@ -24,6 +25,10 @@ export class LeaseComponent implements OnInit {
 
 	ngOnInit() {
 	}
+	ngAfterViewInit() {
+
+    App.init('uiBlocks');
+  }
 	private get currentPageFiltered(): CurrentPageArguments {
 		return this._currentPage;
 	}

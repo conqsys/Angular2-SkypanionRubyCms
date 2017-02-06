@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AmenitiesModel } from '../shared/model/amenities.model';
 import { AmenitiesService } from './amenities.service';
 import { ConfirmService } from '../shared/service/confirm.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
+var App = require('../../public/oneui/assets/js/app.js');
 
 @Component({
 	selector: 'amenities',
@@ -10,7 +11,7 @@ import { CurrentPageArguments } from '../pagination/pagination.component';
 	styleUrls: ['./amenities.component.css']
 })
 
-export class AmenitiesComponent implements OnInit {
+export class AmenitiesComponent implements OnInit, AfterViewInit {
 
 	amenities: AmenitiesModel[] = [];
 	links: string[] = [];
@@ -26,6 +27,10 @@ export class AmenitiesComponent implements OnInit {
 	ngOnInit() {
 			this.getAmenities();
 	}
+	ngAfterViewInit() {
+
+    App.init('uiBlocks');
+  }
   private get currentPageFiltered(): CurrentPageArguments {
     return this._currentPage;
   }

@@ -23,11 +23,11 @@ export class SiteContentComponent implements OnInit , AfterViewInit {
 	 
 	}
   ngAfterViewInit() {
-    setTimeout(() => {
+   setTimeout(() => {
 			if(this.ContentId > 0){
       this.getSiteContentByID();
 			}
-    }, 500);
+    },500);
   }
 	ngOnInit() {
 	//this.getSiteContentByID();

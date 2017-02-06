@@ -1,18 +1,18 @@
 import { UnitDetailComponent } from '../unit-detail';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UnitModel } from '../../shared/model/unit.model';
 import { UploadService } from '../../shared/service/upload.service';
 import { UnitService } from '../unit.service';
-
+var App =require('../../../public/oneui/assets/js/app.js');
 @Component({
 	selector: 'unit-edit',
 	templateUrl: 'unit-edit.component.html',
 	styleUrls: ['Unit-edit.component.css']
 })
 
-export class UnitEditComponent implements OnInit {
+export class UnitEditComponent implements OnInit, AfterViewInit {
 
 	private Id: number;
 	private validateCheck: boolean = false;
@@ -33,6 +33,10 @@ export class UnitEditComponent implements OnInit {
 	ngOnInit() {
 		this.getParameterValue();
 	}
+	  ngAfterViewInit() {
+    
+    App.init('uiBlocks');
+  }
 	public getParameterValue(): void {
 		this.Id = this.route.params['value'].Id;
 		this.getUnitDetail();

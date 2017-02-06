@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UnitModel } from '../../shared/model/unit.model';
 import { UnitService } from './index';
 import { CurrentPageArguments } from '../../pagination/pagination.component';
-//import { PropertyModel } from '../../shared/model/property.model';
-
 @Component({
 	selector: 'property-unit-detail',
 	templateUrl: 'property-unit-detail.component.html'
@@ -38,6 +36,8 @@ export class PropertyUnitDetailComponent implements OnInit {
 	ngOnInit() {
 		this.filteredPropertyDetail();
 	}
+
+	
 	private filteredPropertyDetail(): void {
 		this.unitService.getUnitDetails(
 			this.currentPageFiltered.pageNo,

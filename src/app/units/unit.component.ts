@@ -1,19 +1,21 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  AfterViewInit
 } from '@angular/core';
 import { UnitModel, UnitFilteredArguments } from '../shared/model/unit.model';
 import { SelectItem } from 'primeng/primeng';
 import { UnitService } from './unit.service';
 import { PropertyService } from '../properties/property.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
+var App = require('../../public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'app-unit',
   styleUrls: ['./unit.component.css'],
   templateUrl: './unit.component.html'
 })
-export class UnitComponent implements OnInit {
+export class UnitComponent implements OnInit, AfterViewInit {
 
   units: UnitModel[] = [];
   properties: Array<any> = new Array();
@@ -35,6 +37,10 @@ export class UnitComponent implements OnInit {
     this.generatePropertyDetail();
     this.generatePublishDetail();
     this.generateVacancyDetail();
+  }
+  ngAfterViewInit() {
+
+    App.init('uiBlocks');
   }
   private get currentPageFiltered(): CurrentPageArguments {
     return this._currentPage;
@@ -82,9 +88,9 @@ export class UnitComponent implements OnInit {
       this.unitNumber
     ).then((res) => {
 
-        this.units = res.Data;
-       this.totalItems=res.TotalRecords;
-     
+      this.units = res.Data;
+      this.totalItems = res.TotalRecords;
+
     })
   }
   pageChangeHandler(): void {
