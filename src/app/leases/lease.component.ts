@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeaseModel } from '../shared/model/lease.model';
 import { LeaseService } from './lease.service';
 import { CurrentPageArguments } from '../pagination/pagination.component';
-var App = require('../../public/oneui/assets/js/app.js');
+var App = require('../../assets/public/oneui/assets/js/app.js');
 
 @Component({
 	selector: 'lease',

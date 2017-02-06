@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PropertyModel } from './index';
 import { PropertyService } from '../property.service';
 import { AmenitiesService } from '../../amenities/amenities.service';
-var App = require('../../../public/oneui/assets/js/app.js');
+var App = require('../../../assets/public/oneui/assets/js/app.js');
 @Component({
 	selector: 'property-edit',
 	templateUrl: 'property-edit.component.html',

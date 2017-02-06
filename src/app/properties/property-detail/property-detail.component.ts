@@ -2,7 +2,7 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyModel } from '../../shared/model/property.model';
 import { PropertyService } from '../property.service';
-var App = require('../../../public/oneui/assets/js/app.js');
+var App = require('../../../assets/public/oneui/assets/js/app.js');
 @Component({
 	selector: 'property-detail',
 	templateUrl: 'property-detail.component.html'

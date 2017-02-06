@@ -4,7 +4,7 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { decorateModuleRef } from './app/environment';
 import { bootloader } from '@angularclass/hmr';
-var App = require('./public/oneui/assets/js/app.js');
+var App = require('./assets/public/oneui/assets/js/app.js');
 /*
  * App Module
  * our top level module that holds all of our components

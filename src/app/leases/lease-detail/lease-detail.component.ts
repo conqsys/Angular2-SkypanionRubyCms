@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { LeaseModel } from '../../shared/model/lease.model';
 import { LeaseService } from '../lease.service';
-var App = require('../../../public/oneui/assets/js/app.js');
+var App = require('../../../assets/public/oneui/assets/js/app.js');
 @Component({
 	selector: 'lease-detail',
 	templateUrl: 'lease-detail.component.html',

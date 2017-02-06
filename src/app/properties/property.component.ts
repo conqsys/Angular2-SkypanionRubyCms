@@ -7,7 +7,7 @@ import { PropertyModel } from '../shared/model/property.model';
 import { PropertyService } from './property.service';
 import { SelectItem } from 'primeng/primeng';
 import { CurrentPageArguments } from '../pagination/pagination.component';
-var App = require('../../public/oneui/assets/js/app.js');
+var App = require('../../assets/public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'app-properties',

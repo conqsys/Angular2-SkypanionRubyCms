@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersModel } from '../../shared/model/users.model';
 import { UsersService } from '../users.service';
- var App =require('../../../public/oneui/assets/js/app.js');
+ var App =require('../../../assets/public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'user-edit',

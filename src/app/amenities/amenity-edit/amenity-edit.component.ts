@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AmenitiesModel } from '../../shared/model/amenities.model';
 import { AmenitiesService } from '../amenities.service';
-var App = require('../../../public/oneui/assets/js/app.js');
+var App = require('../../../assets/public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'amenity-edit',
