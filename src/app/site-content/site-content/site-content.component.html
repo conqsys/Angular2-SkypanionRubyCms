@@ -119,7 +119,7 @@
       <div class="form-group">
         <div class="col-xs-12">
           <!--<label>html text field</label>-->
-          <ckeditor [(ngModel)]="sitecontent.PageContent" debounce="500">
+          <ckeditor [(ngModel)]="sitecontent.PageContent" debounce="500" [config]="CkeditorConfig">
           </ckeditor>
           <div class="help-block animated fadeInDown">
           </div>
