@@ -1,56 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { SiteContentModel } from '../shared/site-content.model';
 import { SiteContentService } from '../shared/site-content.service';
 @Component({
-	selector: 'site-content-list',
-	templateUrl: 'site-content-list.component.html',
-	styleUrls: ['site-content-list.component.css']
+	selector: 'site-content',
+	templateUrl: 'site-content.component.html',
+	styleUrls: ['site-content.component.css']
 })
-export class SiteContentListComponent implements OnInit {
+export class SiteContentComponent implements OnInit, AfterViewInit {
 
-	private siteContentModel: SiteContentModel[] = [];
-	private Id: number;
-	constructor(private route: ActivatedRoute,
+	private sitecontent: SiteContentModel = new SiteContentModel();;
+	private ContentId: number;
+	constructor(private activatedRoute: ActivatedRoute,
+		private siteContentService: SiteContentService,
 		private router: Router,
-		private siteContentService: SiteContentService
 	) {
-		// super(router);
-		this.siteContentModel = new Array<SiteContentModel>();
-		this.Id = this.route.params['value'].Id;
-		// this.getLease();
-	}
+		this.activatedRoute.params.subscribe(params => {
+			this.ContentId = +params['Id']; // (+) converts string 'id' to a number
+		});
 
+	}
+	ngAfterViewInit() {
+		setTimeout(() => {
+			if (this.ContentId > 0) {
+				this.getSiteContentByID();
+			}
+		}, 500);
+	}
 	ngOnInit() {
-		this.getSiteContents();
+		//this.getSiteContentByID();
 	}
 
-	private getSiteContents(): void {
+	SaveSiteContents() {
+		this.siteContentService.saveSiteContents(this.sitecontent).then(result => {
+			this.router.navigate(['/siteContentList']);
+		});
+	}
+
+	private getSiteContentByID(): void {
 		this.siteContentService
-			.getSiteContents()
+			.getSiteContentByID(this.ContentId)
 			.then(result => {
-				if (result) {
-					this.siteContentModel = result;
-				}
+				this.sitecontent = result;
 			});
 	}
-	private addContent(): void {
-		this.router.navigate(['/siteContent', 0]);
-	}
-
-	private editSiteContent(ContentId: number): void {
-		this.router.navigate(['/siteContent', ContentId]);
-	}
-
-	private removeSiteContent(ContentId: number): void {
-		this.siteContentService
-			.removeSiteContent(ContentId)
-			.then(result => {
-				if (result) {
-					this.getSiteContents();
-				}
-			});
+	private Cancel(): void {
+		this.router.navigate(['/siteContentList']);
 	}
 
 }
