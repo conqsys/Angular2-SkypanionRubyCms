@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersModel } from '../../shared/model/users.model';
 import { UsersService } from '../users.service';
+ var App =require('../../../public/oneui/assets/js/app.js');
 
 @Component({
   selector: 'user-edit',
@@ -9,7 +10,7 @@ import { UsersService } from '../users.service';
   styleUrls: ['user-edit.component.css']
 })
 
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit,AfterViewInit {
 
   private reqMsg: string = 'can' + 't be blank';
 
@@ -41,6 +42,11 @@ export class UserEditComponent implements OnInit {
     this.getParameterValue();
 
   }
+  ngAfterViewInit() {
+    
+    App.init('uiBlocks');
+  }
+
   public getParameterValue(): void {
     // this.route.params.subscribe((params) => {
     this.Id = this.route.params['value'].Id;

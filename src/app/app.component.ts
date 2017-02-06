@@ -8,7 +8,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { AppState } from './app.service';
-import * as App from '../public/oneui/assets/js/app.js';
+// import * as App from '../public/oneui/assets/js/app.js';
 // import * as Scroll from '../public/oneui/assets/js/core/jquery.slimscroll.min.js';
 /*
  * App Component
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     public appState: AppState
   ) { }
   ngAfterViewInit() {
-    App.init();
+   // App.init();
     // Scroll.init();
   }
   public ngOnInit() {

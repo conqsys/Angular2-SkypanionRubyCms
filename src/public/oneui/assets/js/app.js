@@ -9,7 +9,7 @@ var App = function() {
     
     // Helper variables - set in uiInit()
     var $lHtml, $lBody, $lPage, $lSidebar, $lSidebarScroll, $lSideOverlay, $lSideOverlayScroll, $lHeader, $lMain, $lFooter;
-
+   var count=0;
     /*
      ********************************************************************************************
      *
@@ -309,6 +309,8 @@ var App = function() {
 
     // Main navigation functionality
     var uiNav = function() {
+                
+
         // When a submenu link is clicked
         jQuery('[data-toggle="nav-submenu"]').on('click', function(e){
             // Get link
@@ -1184,7 +1186,10 @@ var App = function() {
     };
 
     return {
+      
         init: function($func) {
+       
+            if(count==0){
             switch ($func) {
                 case 'uiInit':
                     uiInit();
@@ -1218,7 +1223,7 @@ var App = function() {
                     uiInit();
                     uiLayout();
                     uiNav();
-                    uiBlocks();
+                  //  uiBlocks();
                     uiForms();
                     uiHandleTheme();
                     uiToggleClass();
@@ -1226,6 +1231,7 @@ var App = function() {
                     uiYearCopy();
                     uiHandleScroll();
             }
+        }
         },
         layout: function($mode) {
             uiLayoutApi($mode);
