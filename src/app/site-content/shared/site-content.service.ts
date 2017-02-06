@@ -17,7 +17,7 @@ export class SiteContentService {
  
 
   public getSiteContents(): Promise<SiteContentModel[]> {
-		 let headers = new Headers();
+		//  let headers = new Headers();
     return this.http
       .get(ApiUrl.baseUrl + 'SitePage/')
       .toPromise()
@@ -35,7 +35,7 @@ export class SiteContentService {
       .catch(err => err);
   }
   public getSiteContentByID(Id: number): Promise<any> {
-    let headers = new Headers();
+    // let headers = new Headers();
     //this.createAuthorizationHeader(headers);
     return this.http
       .get(ApiUrl.baseUrl + 'SitePage/' + Id)

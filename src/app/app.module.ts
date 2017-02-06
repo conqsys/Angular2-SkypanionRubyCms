@@ -79,7 +79,7 @@ import { TenantDashboardService } from './tenantDashboard/tenant-dashboard.servi
 import { SiteContentComponent } from './site-content/site-content/site-content.component';
 import { SiteContentListComponent } from './site-content/site-content-list/site-content-list.component';
 import { SiteContentService } from './site-content/shared/site-content.service';
-
+import { UiSwitchModule } from 'angular2-ui-switch'
 
 import { ConfirmService } from './shared/service/confirm.service';
 import { UploadService } from './shared/service/upload.service';
@@ -165,6 +165,7 @@ type StoreType = {
     PaginatorModule,
     MultiSelectModule,
 		TabViewModule,
+		UiSwitchModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
 

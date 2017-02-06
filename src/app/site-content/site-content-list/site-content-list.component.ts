@@ -32,6 +32,7 @@ export class SiteContentListComponent implements OnInit {
 			.then(result => {
 				if (result) {
 					this.siteContentModel = result;
+					// alert(JSON.stringify(this.siteContentModel[0]))
 				}
 			});
 	}
@@ -39,9 +40,9 @@ export class SiteContentListComponent implements OnInit {
 		this.router.navigate(['/siteContent', 0]);
 	}
 
-	private editSiteContent(ContentId: number): void {
-		this.router.navigate(['/siteContent', ContentId]);
-	}
+	// private editSiteContent(ContentId: number): void {
+	// 	this.router.navigate(['/siteContent', ContentId]);
+	// }
 
 	private removeSiteContent(ContentId: number): void {
 		this.siteContentService
